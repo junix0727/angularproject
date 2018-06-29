@@ -1,0 +1,19 @@
+﻿<div class="modal-header">    
+    <h3 class="modal-title">{{ local.GlobalContact }}</h3>
+</div>
+<div class="modal-body">
+    <label class="control-label" for="uxEmail">
+        <span>{{ local.GlobalEmail }}</span>
+    </label>
+    <div>
+        <input type="email" id="uxEmail" class="form-control" ng-model="email" />
+    </div>
+</div>
+<div class="modal-footer">
+    <button class="btn table-save-btn" ng-click="save()" ng-disabled="performingAction">
+        {{local.GlobalSaveBtn}}
+    </button>
+    <button class="btn btn-default" ng-click="cancel()" ng-disabled="performingAction">
+        {{local.GlobalCancel}}
+    </button>
+</div>

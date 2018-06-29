@@ -1,0 +1,17 @@
+{
+  "name": "yuri-web",
+  "homepage": "https://github.com/junix0727/angularproject",
+  "authors": [
+    "junix0727 <junix0727@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
