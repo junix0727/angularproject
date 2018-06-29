@@ -3599,6 +3599,7 @@
     <Content Include="package-lock.json" />
     <Content Include="package.json" />
     <Content Include="bower.json" />
+    <None Include="Properties\PublishProfiles\test.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="node_modules\abbrev\abbrev.js" />
     <Content Include="node_modules\ajv\.tonic_example.js" />
