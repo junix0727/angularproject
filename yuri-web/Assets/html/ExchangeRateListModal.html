@@ -1,0 +1,23 @@
+﻿<div class="modal-header">
+    <h3 class="modal-title">
+        <span ng-bind="currency"></span> <span ng-bind="amount | number: 2"></span>
+    </h3>
+</div>
+<div class="modal-body">
+    <table ng-table="tableParams" show-filter="true" class="table table-condensed">
+        <tr ng-cloak ng-repeat="item in $data">
+            <td data-title="'Currency'" filter="{ 'Currency': 'text' }" sortable="'Currency'">
+                <span ng-bind="item.Currency"></span>
+            </td>
+            <td class="text-right" data-title="'Amount'" filter="{ 'Amount': 'text' }" sortable="'Amount'">
+                <span ng-bind="item.Amount | number: 2"></span>
+            </td>
+        </tr>
+    </table>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-default" ng-click="close()">
+        <i class="fa fa-times"></i>
+        <span ng-bind="labels.GlobalCancel"></span>
+    </button>
+</div>

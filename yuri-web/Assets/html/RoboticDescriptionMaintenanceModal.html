@@ -1,0 +1,70 @@
+﻿<div class="modal-header">
+    <h3 class="modal-title" ng-bind="pageTitle"></h3>
+</div>
+<div class="modal-body">
+    <div class="row" style="margin-bottom: 10px;">
+        <div class="col-sm-6">
+            <div class="button-block pull-right btn-container" ng-show="showPanel" style="padding:0;">
+                <button type="button" id="lnkAddNew" class="btn btn-primary" ng-click="addnew()" data-toggle="tooltip" data-placement="top" uib-tooltip="{{label.addnew}}">
+                    <span class="fa fa-plus"></span>
+                </button>
+                <button type="button" id="lnkEdit" class="btn btn-primary" ng-disabled="showEdit" ng-click="edit()" data-toggle="tooltip" data-placement="top" uib-tooltip="{{label.edit}}">
+                    <span class="fa fa-pencil"></span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <table ng-table="list" show-filter="true" class="table table-condensed master-table">
+        <tr ng-cloak>
+            <th ng-cloak>
+                <button id="btnAddNewRow" type="button" class="btn btn-xs table-header-add-btn" ng-click="addNewRow()" uib-tooltip-placement="top"
+                        uib-tooltip-append-to-body="true" uib-tooltip="{{label.add}}" ng-disabled="action === 'new' || action === 'edit'">
+                    <i class="fa fa-plus"></i>
+                </button>
+            </th>
+            <th ng-cloak ng-repeat="key in header">
+                {{key}}
+            </th>
+        </tr>
+        <tr id="tr{{$index}}" ng-cloak ng-repeat="item in currentList track by $index"
+            ng-class="{'active': item.$selected}" style="cursor: pointer;">
+            <td>
+                <button type="button" class="btn btn-xs table-btn" ng-click="saveRow(item, $index)" ng-show="(action == 'edit' || action == 'new') && editIndex === $index">
+                    <i class="fa fa-check"></i>
+                </button>
+                <button type="button" class="btn btn-xs table-btn" ng-show="editIndex !== $index" ng-disabled="action == 'new'" ng-click="edit(item, $index)" uib-tooltip-placement="top"
+                        uib-tooltip-append-to-body="true" uib-tooltip="{{label.edit}}">
+                    <i class="fa fa-pencil"></i>
+                </button>
+                <button type="button" class="btn btn-xs table-btn" ng-click="removeRow(item)" uib-tooltip-placement="top" ng-disabled="action !== undefined" uib-tooltip-append-to-body="true" uib-tooltip="{{label.remove}}">
+                    <i class="fa fa-trash"></i>
+                </button>
+            </td>
+            <td ng-cloak>
+                <input type="text" class="form-control" ng-model="item.Text" ng-disabled="editIndex !== $index" />
+            </td>
+        </tr>
+        <tr id="{{$index}}" ng-show="action=='new'">
+            <td>
+                <button type="button" class="btn btn-xs table-btn" ng-click="saveRow()">
+                    <i class="fa fa-check"></i>
+                </button>
+                <button type="button" class="btn btn-xs table-btn" ng-disabled="editIndex != null || performingAction" ng-click="removeRow($index)" uib-tooltip-placement="top"
+                        uib-tooltip-append-to-body="true" uib-tooltip="{{label.remove}}">
+                    <i class="fa fa-trash"></i>
+                </button>
+            </td>
+            <td><input type="text" class="form-control" ng-model="newItem.Text" required /></td>
+        </tr>
+       
+    </table>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-default" ng-click="Save()" data-toggle="tooltip" ng-disabled="(action == 'edit' || action == 'new')" data-placement="top" uib-tooltip="{{labels.close}}">
+        <span class="fa fa-check"></span>
+    </button>
+    <!--<button type="button" class="btn btn-default" ng-click="Dismiss()" ng-disabled="performingAction"
+            data-toggle="tooltip" data-placement="top" uib-tooltip="{{labels.close}}">
+        <span class="fa fa-times"></span>
+    </button>-->
+</div>
