@@ -1,0 +1,56 @@
+﻿<div class="row ngduallist">
+    <div class="col-md-6 left-container">
+        <label>{{duallistOption.leftContainerLabel}}</label>
+        <span class="info-container">
+            <span class="info" ng-if="leftscope.length > 0">{{duallistOption.showingLabel}} {{leftscope.length}} {{ duallistOption.ofLabel}} {{duallistOption.leftTotal}}</span>
+            <span class="info" ng-if="leftscope.length == 0">{{duallistOption.emptylistLabel}}</span>
+        </span>
+        <div id="moveRightButton" ng-click="moveRight();" title="{{duallistOption.selectLabel}}" class="btn btn-default center-block add"><i class="glyphicon glyphicon-chevron-right"></i></div>
+        <form class="form-inline">
+            <div>
+                <div class="input-group">
+                    <input type="text" class="form-control" id="leftsearch" placeholder="{{duallistOption.searchLabel}}">
+                    <div class="input-group-addon">
+                        <input title="toggle all" class="all pull-right" ng-model="leftSelectAll" ng-change="selectAllLeftContainer()" type="checkbox">
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <div class="left-sub-container">
+            <div class="list-group" id="list1">
+                <div ng-class="{active:data.selected}" ng-repeat="data in leftscope track by $index" class="list-group-item">
+                    {{data.Name}}
+                    <input class="pull-right" ng-model="data.selected" type="checkbox">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 right-container">
+        <label>{{duallistOption.rightContainerLabel}}</label>
+        <span class="info-container">
+            <span class="info" ng-if="rightscope.length > 0">{{duallistOption.showingLabel}} {{rightscope.length}} {{ duallistOption.ofLabel}} {{duallistOption.rightTotal}} </span>
+            <span class="info" ng-if="rightscope.length == 0">{{duallistOption.emptylistLabel}}</span>
+        </span>
+        <div id="moveLeftButton" ng-click="moveLeft();" title="{{duallistOption.unselectLabel}}" class="btn btn-default center-block remove"><i class="glyphicon glyphicon-chevron-left"></i></div>
+        <form class="form-inline">
+            <div>
+                <div class="input-group">
+                    <input type="text" class="form-control" id="rightsearch" placeholder="{{duallistOption.searchLabel}}">
+                    <div class="input-group-addon">
+                        <input ng-model="rightSelectAll" ng-change="selectAllRightContainer()" title="toggle all" class="all pull-right" type="checkbox">
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <div class="right-sub-container">
+            <div class="list-group" id="list2">
+                <div ng-class="{active:data.selected}" ng-repeat="data in rightscope track by $index" class="list-group-item">
+                    {{data.Name}}
+                    <input ng-model="data.selected" class="pull-right" type="checkbox">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

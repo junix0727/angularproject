@@ -1,0 +1,35 @@
+﻿<div class="modal-header">
+    <h3 class="modal-title">
+        {{local.GlobalSelectUser}}
+    </h3>
+</div>
+<div class="wf-modal">
+    <div>
+        <div id="divSelectUser">
+            <label class="control-label" for="SelectUser">
+                {{local.GlobalAssignTo}}
+            </label>
+            <div>
+                <ui-select id="SelectUser" ng-cloak ng-model="user.Id" on-select="onSelectAccount($item)" autofocus>
+                    <ui-select-match>
+                        {{ $select.selected.UserName + ' - ' + $select.selected.Description || $select.selected }}
+                    </ui-select-match>
+                    <ui-select-choices repeat="choice.Id as choice in userList | propsFilter: {Description: $select.search, UserName: $select.search }">
+                        <div ng-bind-html="choice.Description | highlight: $select.search"></div>
+                        <small>
+                            <span style="white-space: normal" ng-bind-html="choice.UserName | highlight: $select.search"></span>
+                        </small>
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button class="btn table-save-btn" ng-click="assign()" ng-disabled="performingAction || !user.Id">
+        {{local.GlobalYes}}
+    </button>
+    <button class="btn btn-default" ng-click="cancel()" ng-disabled="performingAction">
+        {{local.GlobalCancel}}
+    </button>
+</div>

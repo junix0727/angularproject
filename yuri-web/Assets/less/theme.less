@@ -1,0 +1,921 @@
+﻿
+//
+// Load core variables and mixins
+@import "iba-variables.less";
+@import "mixins.less";
+
+body {
+    font-family:@font-family-sans-serif;
+    height: 100%;
+}
+
+//
+// Buttons
+// --------------------------------------------------
+
+// Common styles
+.btn-default,
+.btn-primary,
+.btn-success,
+.btn-info,
+.btn-warning,
+.btn-danger {
+	
+  text-shadow: 0 -1px 0 rgba(0,0,0,.2);
+  @shadow: inset 0 1px 0 rgba(255,255,255,.15), 0 1px 1px rgba(0,0,0,.075);
+  .box-shadow(@shadow);
+
+  // Reset the shadow
+  &:active,
+  &.active {
+    .box-shadow(inset 0 3px 5px rgba(0,0,0,.125));
+  }
+
+  .badge {
+    text-shadow: none;
+  }
+}
+
+
+// Mixin for generating new styles
+.btn-styles(@btn-color: #555) {
+  #gradient > .vertical(@start-color: @btn-color; @end-color: @btn-color);
+  .reset-filter(); // Disable gradients for IE9 because filter bleeds through rounded corners; see https://github.com/twbs/bootstrap/issues/10620
+  background-repeat: repeat-x;
+  border-color: darken(@btn-color, 14%) !important;
+
+  &:hover,
+  &:focus  {
+    background-color: darken(@btn-color, 12%);
+	background-position: center center;
+  }
+
+  &:active,
+  &.active {
+    background-color: darken(@btn-color, 12%);
+    border-color: darken(@btn-color, 14%);
+  }
+
+  &.disabled,
+  &:disabled,
+  &[disabled] {
+    background-color: darken(@btn-color, 12%)!important;
+    background-image: none;
+  }
+}
+
+// Common styles
+.btn { border-radius:3px;
+
+  // Remove the gradient for the pressed/active state
+  &:active,
+  &.active {
+    background-image: none;
+  }
+}
+
+// Apply the mixin to the buttons
+.btn-default { .btn-styles(@btn-default-bg); text-shadow: 0 1px 0 #fff; border-color: #ccc; color: @gray-base !important;}
+.btn-primary { .btn-styles(@btn-primary-bg); background-color: @btn-primary-bg !important; text-shadow: none; border-color: @btn-primary-border; color: @btn-primary-color; border-radius: 30px !important; padding:6px 10px;}
+.btn-success { .btn-styles(@btn-success-bg); }
+.btn-info    { .btn-styles(@btn-info-bg); }
+.btn-warning { background-color: @btn-warning-bg !important; border-color: #ff1744 !important; text-shadow: none;}
+.btn-danger  { .btn-styles(@btn-danger-bg); }
+.btn-accent { background-color: @btn-accent-bg !important; text-shadow: none; border-color: @btn-accent-border; color: @btn-accent-color;}
+
+.button-grouping {
+    margin-right:@padding-large-vertical;
+}
+
+
+.btn-container {
+    display:inline-block;
+}
+
+.secondary-btn {
+    padding-top:0 !important;
+    padding-right:25px;
+}
+
+//
+// Images
+// --------------------------------------------------
+
+.thumbnail,
+.img-thumbnail {
+  .box-shadow(0 1px 2px rgba(0,0,0,.075));
+}
+
+//
+// Double Underline
+// --------------------------------------------------
+
+.double-underline { 
+    border-bottom: 3px double; 
+}
+
+
+//
+// Dropdowns
+// --------------------------------------------------
+
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li > a:focus {
+  // color:@brand-primary;
+      color:#000;
+    background-color: #e9e9e9;
+
+}
+.dropdown-menu > .active > a,
+.dropdown-menu > .active > a:hover,
+.dropdown-menu > .active > a:focus {
+  //color:@brand-primary;
+    color:#000;
+    background-color: #e9e9e9;
+}
+
+.nav>li{
+    float: left;
+}
+
+//
+// Navbar
+// --------------------------------------------------
+.navbar {
+    min-height:70px;
+}
+
+.navbar-nav>li>a {
+line-height: 20px;
+margin-bottom:5px;
+}
+
+.navbar-default .navbar-text.navbar-right {
+margin-top: 25px;
+font-size: small;
+}
+
+
+@media (min-width: @screen-sm-min) { 
+    .navbar-form .form-control {
+        width: 200px;
+        }    
+}
+
+.navbar-fixed-top .navbar-collapse {
+    max-height:1000px !important;
+}
+
+
+@media (max-width: 768px) {
+        .navbar-nav .open .dropdown-menu {
+            background-color:#fff !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar-default .navbar-nav .open .dropdown-menu>li>a {
+    color: #000 !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar-default .navbar-nav .open .dropdown-menu>li>a:hover {
+    color: #000 !important;
+    }
+}
+
+@media(max-width:768px)  {
+
+    .navbar-toggle {
+        display: block!important;
+        position:absolute;
+        right:15px;
+        top:10px;
+    }
+
+    .navbar-collapse.collapse {
+        display: none !important;
+        padding-left: 30px !important;
+        padding-right: 30px !important;
+        border-color:#ffffff !important;
+    }
+
+    .navbar-default .navbar-form {
+        border-color:#ffffff !important;
+    }
+
+    .navbar-collapse {
+        overflow-x: visible !important;
+        max-height:1000px;
+    }
+
+    .navbar-collapse.in {
+      overflow-y: visible !important;
+      margin-top: 20px;
+      
+    }
+
+    .collapse.in {
+      display: block !important;
+      
+    }
+
+  .navbar-collapse .navbar-text:last-child {
+    margin-right: 15px;;
+  }
+
+    .container-fluid>.navbar-header {
+        margin-right: 0;
+        margin-left: 0;
+    }
+    .navbar-default .navbar-nav .open .dropdown-menu>li>a {
+    color:#000;
+}
+    .navbar-default .navbar-nav .open .dropdown-menu>li>a:hover {
+    color:#000;
+    background-color: #e9e9e9;
+}
+
+}
+
+.icon-user {
+    padding-right:10px;
+}
+
+
+
+// Inverted navbar
+.navbar-inverse {
+  #gradient > .vertical(@start-color: lighten(@navbar-inverse-bg, 10%); @end-color: @navbar-inverse-bg);
+  .reset-filter(); // Remove gradient in IE<10 to fix bug where dropdowns don't get triggered; see https://github.com/twbs/bootstrap/issues/10257
+
+  .navbar-nav > .open > a,
+  .navbar-nav > .open > a:hover,
+  .navbar-nav > .open > a:focus,
+  .navbar-nav > .active > a {
+    color:@brand-primary;
+	background-color:#ffffff;
+    .box-shadow(inset 0 3px 9px rgba(0,0,0,.25));
+  }
+
+  .navbar-brand,
+  .navbar-nav > li > a {
+	color:#ffffff !important;
+  }
+}
+
+// Undo rounded corners in static and fixed navbars
+.navbar-static-top,
+.navbar-fixed-top,
+.navbar-fixed-bottom {
+  border-radius: 0;
+}
+
+// Fix active state of dropdown items in collapsed mode
+@media (max-width: @grid-float-breakpoint-max) {
+  .navbar .navbar-nav .open .dropdown-menu > .active > a {
+    &,
+    &:hover,
+    &:focus {
+      color: @gray-dark;
+      #gradient > .vertical(@start-color: @dropdown-link-active-bg; @end-color: darken(@dropdown-link-active-bg, 5%));
+    }
+  }
+}
+
+
+//
+// Alerts
+// --------------------------------------------------
+
+// Common styles
+.alert {
+  text-shadow: 0 1px 0 rgba(255,255,255,.2);
+  @shadow: inset 0 1px 0 rgba(255,255,255,.25), 0 1px 2px rgba(0,0,0,.05);
+  .box-shadow(@shadow);
+}
+
+// Mixin for generating new styles
+.alert-styles(@color) {
+  #gradient > .vertical(@start-color: @color; @end-color: darken(@color, 7.5%));
+  border-color: darken(@color, 15%);
+}
+
+// Apply the mixin to the alerts
+.alert-success    { .alert-styles(@alert-success-bg); }
+.alert-info       { .alert-styles(@alert-info-bg); }
+.alert-warning    { .alert-styles(@alert-warning-bg); }
+.alert-danger     { .alert-styles(@alert-danger-bg); }
+
+
+//
+// Progress bars
+// --------------------------------------------------
+
+// Give the progress background some depth
+.progress {
+  #gradient > .vertical(@start-color: darken(@progress-bg, 4%); @end-color: @progress-bg)
+}
+
+// Mixin for generating new styles
+.progress-bar-styles(@color) {
+  #gradient > .vertical(@start-color: @color; @end-color: darken(@color, 10%));
+}
+
+// Apply the mixin to the progress bars
+.progress-bar            { .progress-bar-styles(@progress-bar-bg); }
+.progress-bar-success    { .progress-bar-styles(@progress-bar-success-bg); }
+.progress-bar-info       { .progress-bar-styles(@progress-bar-info-bg); }
+.progress-bar-warning    { .progress-bar-styles(@progress-bar-warning-bg); }
+.progress-bar-danger     { .progress-bar-styles(@progress-bar-danger-bg); }
+
+// Reset the striped class because our mixins don't do multiple gradients and
+// the above custom styles override the new `.progress-bar-striped` in v3.2.0.
+.progress-bar-striped {
+  #gradient > .striped();
+}
+
+
+//
+// List groups
+// --------------------------------------------------
+
+.list-group {
+  border-radius: @border-radius-base;
+  .box-shadow(0 1px 2px rgba(0,0,0,.075));
+}
+.list-group-item.active,
+.list-group-item.active:hover,
+.list-group-item.active:focus {
+  text-shadow: 0 -1px 0 darken(@list-group-active-bg, 10%);
+  #gradient > .vertical(@start-color: @list-group-active-bg; @end-color: darken(@list-group-active-bg, 7.5%));
+  border-color: darken(@list-group-active-border, 7.5%);
+
+  .badge {
+    text-shadow: none;
+  }
+}
+
+// Forms
+// --------------------------------------------------
+.page-subtitle {
+float:left;
+font-size:@font-size-large;
+padding-top: 15px !important;
+}
+
+.col-pull-left{
+float:left;
+padding-top: 10px !important;
+}
+
+.input-padding {
+padding-right:5px !important;
+}
+
+.page-divider {
+   padding-top:20px;
+}
+.hr-divider {
+    padding-top:10px;
+    padding-bottom:12px;
+    border-top:1px solid @gray-light;
+}
+
+.well-divider {
+   border-top: 1px solid darken(@well-bg, 10%);
+   padding-top:30px;
+}
+
+
+.form-group {
+    margin-bottom:10px;
+}
+
+.datepicker-disable {
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+.form-control { .form-control(@brand-primary); }
+
+//
+// Panels
+// --------------------------------------------------
+
+// Common styles
+* html .panel {
+
+  .box-shadow(0 1px 2px rgba(0,0,0,.05));
+}
+
+.panel-primary {
+    border-color: @btn-primary-border;
+}
+
+.panel-primary>.panel-heading {
+    border-color: @btn-primary-border;
+}
+
+.panel-primary > .panel-body {
+    background-color:transparent;
+    padding-top:30px;
+}
+
+.panel-default>.panel-heading {
+
+    font-size:18px;
+    text-transform:uppercase;
+}
+
+.panel .panel-heading {
+   
+    & h4 {
+    margin-bottom:5px;
+    margin-top:5px;}
+}
+
+
+
+.panel-wrapper {
+   padding-top: @padding-large-horizontal *2;
+   
+}
+
+.negative-margin {
+    margin:0 -15px;
+}
+
+// Mixin for generating new styles
+.panel-heading-styles(@color) {
+  #gradient > .vertical(@start-color: @color; @end-color: @color;);
+}
+
+// Apply the mixin to the panel headings only
+.panel-default > .panel-heading   { .panel-heading-styles(#fff); }
+.panel-primary > .panel-heading   { .panel-heading-styles(@panel-primary-heading-bg); }
+.panel-success > .panel-heading   { .panel-heading-styles(@panel-success-heading-bg); }
+.panel-info > .panel-heading      { .panel-heading-styles(@panel-info-heading-bg); }
+.panel-warning > .panel-heading   { .panel-heading-styles(@panel-warning-heading-bg); }
+.panel-danger > .panel-heading    { .panel-heading-styles(@panel-danger-heading-bg); }
+
+.panel-heading .accordion-toggle:after {
+    font-family: 'Glyphicons Halflings';
+    content: "\e114";  
+    float: right;
+    color: grey; 
+}
+.panel-heading .accordion-toggle.collapsed:after {
+    content: "\e080";   
+}
+
+a:hover {
+    text-decoration:none;
+}
+
+//
+// Wells
+// --------------------------------------------------
+
+.well {
+    background-color:transparent;
+    border-color: darken(@well-bg, 10%);
+    @shadow: none;
+    .box-shadow(@shadow);
+}
+
+
+//
+// Tabs
+// --------------------------------------------------
+
+.nav-tabs {
+    border-bottom:2px solid @brand-primary;
+}
+
+.nav-tabs>li>a {
+    color:@gray-darker;
+    background-color: #fff; 
+    border: 1px solid darken(@gray-light, 12%);
+    border-bottom:0;
+    border-radius:3px 3px 0 0;
+    padding:8px 15px;
+
+}
+
+.nav-tabs>li>a:hover  {
+    color:@gray-darker;
+    background-color: darken(@gray-lighter, 5%); 
+    border: 1px solid darken(@gray-light, 12%);
+    border-bottom:0;
+
+}
+
+/* active tab color */
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus {
+    background-color: @brand-primary; 
+    border-color: @brand-primary;
+    color:#fff;
+}
+
+
+
+// Page Header
+// --------------------------------------------------
+
+.page-title{
+    padding: 60px 15px 10px;
+
+    & h1 {
+    font-size: 14px !important;
+    color:@gray-dark;
+    font-weight: bold !important;
+    }
+}
+
+.gradient-primary {
+    border-bottom:1px solid @gray-light;
+}
+.page-header-container{
+    position:fixed;
+    top: 70px;
+    z-index: 150;
+    width: 100%;
+    background-color: #f5f1eb;
+}
+
+.page-header{
+    padding:10px 15px;
+    border-bottom:none;
+    margin:0;
+
+    & h1 {
+    font-size: 14px !important;
+    font-weight: 700;
+    margin:0;
+    }
+}
+
+.row-page-title{
+    background-color:@gray-lighter;
+    border-bottom:solid 1px @gray-light;
+}
+
+.breadcrumb {
+   font-size: 10px;
+   margin-bottom:0;
+   background-color:transparent;
+   padding: 0px;
+}
+
+.iba-breadcrumbs a:hover {
+   color:#ffffff;
+   text-decoration:none;
+}
+
+.breadcrumbs-icon {
+    margin:0 4px;
+}
+
+.main-content 
+{
+    margin-top:70px;
+}
+
+
+
+
+// texts
+// --------------------------------------------------
+.input-text{
+font-weight:normal!important;
+}
+.input-field {
+    margin-bottom:10px;
+}
+label.required:after  {
+    content: " *"; 
+    color: red;
+}
+
+label {
+    font-weight:normal;
+    margin-bottom: 2px;
+    font-size:12px; 
+    font-weight:600;
+}
+
+// custom codes
+// --------------------------------------------------
+
+.ui-select-match-text>span {
+    padding-right: 10px;
+}
+
+
+.popover {
+    position: fixed;
+    max-width: 100%;
+
+    .text-warning {
+        color:#ffffff;
+    }
+}
+
+.popover-title {
+    font-weight:bold;
+}
+
+.popover.ng-isolate-scope {
+    left: 15px !important;
+    top: 5px !important;
+    max-width: 100%;
+    position: fixed;
+
+    .arrow {
+        display: none;
+    }
+
+    @media screen and (min-height: 800px) {
+        img {
+            height: 620px;
+        }
+    }
+
+    @media screen and (min-height: 1000px) {
+        img {
+            height: 820px;
+        }
+    }
+
+    @media screen and (min-height: 1200px) {
+        img {
+            height: 1020px;
+        }
+    }
+
+    @media screen and (max-width: 1700px) {
+        table, img {
+            width: 700px;
+        }
+    }
+}
+
+.no-border {
+    -webkit-box-shadow: 0 0px 0px rgba(0,0,0,.075);
+    box-shadow: 0 0px 0px rgba(0,0,0,.075);
+
+    .list-group-item {
+        padding: 5px 0px;
+        background-color: transparent;
+        border: 0;
+    }
+}
+
+.text-orange {
+    color: #FF9800;
+}
+
+.input-caption {
+    font-size:12px;
+    color:@brand-primary;
+}
+
+.label-warning {
+    background-color: #FF9800;
+}
+
+#dashletGroupTab {
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+
+.btn-dashlet {
+    margin-top: -7px;
+}
+
+.ul-dashlets {
+    padding-left: 70px;
+    padding-right: 100px;
+}
+
+.container-padded {
+    margin-left:15px;
+    margin-right:15px;
+}
+
+.text-primary {
+    color: #fff;
+}
+
+.text-success {
+    color: @brand-success;
+}
+
+.text-warning {
+    color: @brand-warning;
+}
+
+.update-inprogress {
+    color: @brand-danger;
+}
+
+.text-error {
+    color: @brand-danger;
+}
+
+.text-open {
+    color: #90CAF9;
+}
+
+#book-info {
+    tbody>tr>td,
+    tbody>tr>th,
+    tfoot>tr>td,
+    tfoot>tr>th,
+    thead>tr>td,
+    thead>tr>th {
+        white-space: normal;
+    }
+}
+
+.sent-received {
+    background-color: rgba(0, 162, 232, 0.4) !important;
+}
+.sent-exported {
+    background-color: rgba(0,129,0,0.4) !important;
+}
+.sent-inprogress {
+    background-color: rgba(255,255,0,0.4) !important;
+}
+.sent-status {
+    background-color: rgba(129,129,0,0.4) !important;
+}
+.sent-ready {
+    background-color: rgba(255,128,2,0.4) !important;
+}
+.sent-verified {
+    background-color: rgba(0,179,89,0.4) !important;
+}
+
+// Modal styles
+
+.modal-body{
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+.wf-modal{
+    position: relative;
+    padding: 15px;
+}
+
+.wf-modal-header {
+    font-size:18px;
+}
+
+.dashlet-list {
+    padding-top:15px; 
+    padding-bottom:15px; 
+}
+
+// text-angular
+
+.ta-toolbar {
+    padding-bottom:5px;
+}
+
+// form-fields 
+
+.form-control {
+    height:30px;
+    padding: 5px 10px;
+    border-radius: 3px;
+    font-size: 12px;
+}
+
+.input-group-btn:last-child>.btn {
+    z-index: 2;
+    padding: 5px 10px;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+// bootstrap switch
+
+.bootstrap-switch .bootstrap-switch-handle-on,
+.bootstrap-switch .bootstrap-switch-handle-off,
+.bootstrap-switch .bootstrap-switch-label {
+  padding: 5px 10px;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.bootstrap-switch .bootstrap-switch-handle-on.bootstrap-switch-primary {
+    background-color:@brand-primary !important;
+}
+
+
+/* Error Page*/
+
+.jumbotron.vertical-center {
+  margin-bottom: 0;
+  background-color:#fff;
+}
+
+.jumbotron p {
+  font-size:18px !important;
+  font-weight:normal !important;
+}
+
+.icon-spinner {
+    color: @brand-primary;
+}
+
+.vertical-center {
+  min-height: 100%;
+  min-height: 100vh; 
+
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex; 
+  
+
+    -webkit-box-align : center;
+  -webkit-align-items : center;
+       -moz-box-align : center;
+       -ms-flex-align : center;
+          align-items : center;
+  
+
+  width: 100%;
+
+         -webkit-box-pack : center;
+            -moz-box-pack : center;
+            -ms-flex-pack : center;
+  -webkit-justify-content : center;
+          justify-content : center;
+}
+
+.wizard-row{
+    height: 50px; 
+    padding-top:10px; 
+    font-size: 1.5em;
+}
+
+.has-error .form-control {
+    border-color: #a94442 !important;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075) !important;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075) !important;
+}
+
+.custom-pager {
+    margin-top: -45px; 
+    background-color: #fff;
+    height:45px;
+}
+
+@media (max-width: 768px) {
+        .custom-pager {
+            margin-top: -75px;  
+        }
+}
+
+.d-content {
+    overflow:visible !important;
+}
+
+div.number{
+    div { position: absolute; background: white; left:0; top: 22px; cursor: text; padding: 0 15px; width:100%; }
+    input { position: relative; padding-top: 4px; }
+    input:focus + div { display: none; }
+}
+
+/* dl */
+
+.dl-dt {
+    text-align:left !important;
+    width:auto !important;
+}
+
+.dl-dd {
+    margin-left:0 !important;
+    white-space: nowrap;
+    padding-right: 25px;
+}
+
+.popover{
+    max-width:none;
+    white-space:pre;
+}
+
+.ng-table-group-header {
+    display:none;
+}
+
+.subSectorRow {
+    background-color: #f87000;
+    border-color: #f87000;
+}

@@ -1,0 +1,24 @@
+﻿<div class="modal-header">
+    <h3 class="modal-title">
+        {{ local.selectReadonly }}
+    </h3>
+</div>
+<div class="wf-modal">
+    <div ng-cloak ng-class="user.SelectedUsers.length <= 0 ? 'form-horizontal clearfix has-error' : 'form-horizontal clearfix'">
+        <select multiple bs-duallistbox ng-model="user.SelectedUsers"
+                ng-options="user.Id as user.FullName for user in users"></select>
+    </div>
+</div>
+<div class="modal-footer">
+    <br />
+    <div style="display:inline-block">
+        <button class="btn btn-primary" ng-click="save()" ng-disabled="performingAction" data-toggle="tooltip" data-placement="top" uib-tooltip="{{local.save}}">
+            <span class="fa fa-save"></span>
+        </button>
+    </div>
+    <div style="display:inline-block">
+        <button class="btn btn-default" ng-click="cancel()" ng-disabled="performingAction" data-toggle="tooltip" data-placement="top" uib-tooltip="{{local.cancel}}">
+            <span class="fa fa-times"></span>
+        </button>
+    </div>
+</div>
